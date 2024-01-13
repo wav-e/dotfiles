@@ -1,9 +1,19 @@
 #!/bin/bash
 #
 
+# this settings valid for:
+# * default ubuntu 23.10
+# * Apple magic trackpad 2
+# * libinput 1.24
+# * gnome X(!) session
+# * regular dpi (24 inch display 1080) screen
+
+
+
 # argument {1} - xinput device id
 
 ID=${1}
+#STEP=${2}
 
 # xinput list
 # xinput list-props ${ID}
@@ -67,7 +77,12 @@ ACCEL_POINTS="
 
 
 
-xinput set-prop ${ID} "libinput Accel Custom Motion Points" $ACCEL_POINTS 
-xinput set-prop ${ID} "libinput Accel Profile Enabled" 0, 0, 1 
-xinput set-prop ${ID} "libinput Accel Custom Motion Step" 0.8
+#scroll like macos with linear acceleration
+xinput set-prop ${ID} "libinput Accel Custom Fallback Points" 0.0 0.05
+xinput set-prop ${ID} "libinput Accel Custom Fallback Step" 1.0
 
+xinput set-prop ${ID} "libinput Accel Custom Motion Points" $ACCEL_POINTS
+xinput set-prop ${ID} "libinput Accel Custom Motion Step" 2.0
+
+#enable custom acceleration profile
+xinput set-prop ${ID} "libinput Accel Profile Enabled" 0, 0, 1
