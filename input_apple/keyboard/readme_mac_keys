@@ -1,0 +1,5 @@
+todo 
+* create script
+
+#upgrade for version 0.4:
+pip install xkeysnail --upgrade  
